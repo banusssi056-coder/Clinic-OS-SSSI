@@ -29,3 +29,7 @@ dist-ssr
 # Wrangler (Cloudflare)
 .wrangler
 
+# Nested repo clones (not part of project)
+Clinic-OS-SSSI/
+Clinic-SSSI-OS/
+
