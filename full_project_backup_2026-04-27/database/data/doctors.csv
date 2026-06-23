@@ -1,0 +1,4 @@
+id,name,specialization,consultation_fee,phone,avatar_color,active,created_at,updated_at
+2993de02-ed9b-4763-ad47-06721e12a43c,Dr. Rajesh Kapoor,General Physician,600,+91 98200 11111,purple,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+7486b1b0-f703-4bb0-af19-ce1a2d93856a,Dr. Ananya Iyer,Dermatologist,1200,+91 98200 22222,pink,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+6de1a27a-24ef-4b8c-958d-d5c2607046ea,Dr. Vikram Mehta,Pediatrician,800,+91 98200 33333,orange,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00

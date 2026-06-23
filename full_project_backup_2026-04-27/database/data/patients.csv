@@ -1,0 +1,19 @@
+id,name,phone,email,gender,dob,city,source,tags,lifetime_value,last_visit,status,notes,created_at,updated_at
+05fd9a04-d9fe-4e74-a923-83d7c7a3881d,Aarav Sharma,+91 98765 10001,aarav.sharma@gmail.com,Male,1988-04-12,Mumbai,Google,"{VIP,Regular}",18500,2026-04-19,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+7b7c6bd3-ac78-4bc6-a716-5cd4eb859ccf,Priya Patel,+91 98765 10002,priya.p@yahoo.in,Female,1992-09-23,Mumbai,Referral,{Skin},9800,2026-04-12,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+58121436-ab3e-42a4-9dd7-8ed52a8a485c,Rohan Desai,+91 98765 10003,rohan.d@gmail.com,Male,1985-11-05,Pune,WhatsApp,{Diabetes},24300,2026-04-22,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+6feef8e5-181d-4b57-baf2-ec60fc64ab68,Ishita Reddy,+91 98765 10004,ishita.r@outlook.com,Female,1995-02-18,Bengaluru,Instagram,{New},1200,2026-04-23,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+8044183d-3d93-41e0-a433-067af0e99eed,Karan Malhotra,+91 98765 10005,karan.m@gmail.com,Male,1979-06-30,Delhi,Walk-in,{Regular},32100,2026-04-04,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+a952b570-63ba-4fa0-8dbf-f00dc464c234,Anjali Nair,+91 98765 10006,anjali.n@gmail.com,Female,1990-12-09,Mumbai,Google,"{Skin,VIP}",27800,2026-04-16,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+8f53dcae-d151-4fe4-b0a0-9232c6559ef5,Vivaan Joshi,+91 98765 10007,vivaan.j@gmail.com,Male,2015-03-21,Mumbai,Referral,{Pediatric},6400,2026-04-09,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+6cbed45f-e79f-449b-853a-0ab64722c4f1,Sneha Iyer,+91 98765 10008,sneha.i@gmail.com,Female,1983-08-14,Bengaluru,Google,{Regular},15600,2026-03-20,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+c3e43063-733f-42dc-a719-188132c53ef9,Yash Agarwal,+91 98765 10009,yash.a@gmail.com,Male,1998-05-02,Pune,WhatsApp,{New},800,2026-04-21,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+6c4b5b4e-8011-4061-8edd-74b2e23ab3b7,Diya Kapoor,+91 98765 10010,diya.k@gmail.com,Female,2010-10-17,Delhi,Referral,{Pediatric},4200,2026-04-17,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+08ce2557-bbf5-4fe1-a1c2-dea24a71e579,Aditya Verma,+91 98765 10011,aditya.v@gmail.com,Male,1975-01-25,Mumbai,Walk-in,{Senior},41200,2026-01-19,At Risk,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+e44de894-ddd3-452d-94d8-30085a15dd51,Riya Bhat,+91 98765 10012,riya.b@gmail.com,Female,1989-07-11,Bengaluru,Instagram,{Skin},12800,2026-01-04,At Risk,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+41af0d1c-40d7-4c41-9d11-0d26c0de97b0,Manav Singh,+91 98765 10013,manav.s@gmail.com,Male,1993-04-29,Delhi,Google,{Regular},8900,2026-04-20,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+939d5daa-ce57-44b3-83ef-4009f8aee415,Sara Khan,+91 98765 10014,sara.k@gmail.com,Female,1996-11-08,Mumbai,WhatsApp,{New},1500,2026-04-18,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+2c96548e-2cd9-4a53-8098-1989ba2d8491,Rahul Pandey,+91 98765 10015,rahul.p@gmail.com,Male,1982-09-15,Pune,Referral,"{Diabetes,Regular}",22400,2026-04-06,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+70803522-d19a-4b75-b33e-936dc98ce55e,Tanya Bose,+91 98765 10016,tanya.b@gmail.com,Female,1991-06-20,Bengaluru,Google,"{Skin,VIP}",19700,2026-04-14,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+bbcc8d89-62b2-47f3-a21b-217b672a81e9,Kabir Khanna,+91 98765 10017,kabir.k@gmail.com,Male,2012-12-03,Mumbai,Walk-in,{Pediatric},3800,2026-04-02,Active,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+8f3b6bd0-f922-4476-bf11-9964a09c9176,Pooja Mehta,+91 98765 10018,pooja.m@gmail.com,Female,1987-02-27,Delhi,Instagram,{Regular},14300,2025-12-15,At Risk,,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00

@@ -1,0 +1,5 @@
+id,name,description,services,price,validity_days,sessions_total,active,created_at,updated_at
+1e19eb37-29f2-4cbc-8e51-042d6f0f385f,Skin Glow Pack,6-session facial care program,"{Cleanup,Facial,Mask}",12000,180,6,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+5cbed305-36f8-476b-9f46-da68c6f83ee1,Diabetes Care Plus,Quarterly check-ins and consults,"{Consultation,""Lab review""}",8500,90,4,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+9fb9d856-8fa8-484c-9611-10083ce826c1,Family Wellness,Annual checkups for 4 family members,"{Consultation,Vitals}",15000,365,8,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+73f4a79a-ad1c-435c-a729-78d5f0ba0d41,Pediatric Bright Start,Vaccination + growth tracking,"{Consultation,Vitals}",6500,365,6,t,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00

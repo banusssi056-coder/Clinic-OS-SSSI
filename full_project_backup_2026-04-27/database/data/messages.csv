@@ -1,0 +1,14 @@
+id,patient_id,channel,direction,body,status,template_name,sent_at,created_at
+6829fcb5-04b8-4fac-8a93-d2dda0ae189e,05fd9a04-d9fe-4e74-a923-83d7c7a3881d,WhatsApp,out,"Hi Aarav, your appointment tomorrow at 10 AM is confirmed.",Read,appointment_confirm,2026-04-23 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+a5f23bc4-e0b7-467c-9642-e96b3cee2d98,05fd9a04-d9fe-4e74-a923-83d7c7a3881d,WhatsApp,in,Thanks! See you,Read,,2026-04-23 16:59:24.316468+00,2026-04-24 16:54:24.316468+00
+4143a169-52ab-4527-9ffc-1cd9e69616fb,7b7c6bd3-ac78-4bc6-a716-5cd4eb859ccf,WhatsApp,out,"Hi Priya, your skin treatment is due. Book now: bit.ly/kfc-book",Delivered,retention,2026-04-22 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+c025b701-387c-4b05-bbb6-4a0e72a3a009,6cbed45f-e79f-449b-853a-0ab64722c4f1,WhatsApp,out,"Hi Sneha, we missed you today! Reschedule with 10% off",Read,noshow,2026-04-14 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+70e65ef0-c1a6-4cd4-8d26-5cadb745dcdb,08ce2557-bbf5-4fe1-a1c2-dea24a71e579,WhatsApp,out,"Hi Aditya, it's been a while! Free consultation this week.",Delivered,winback,2026-04-19 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+7f9cacc5-5ebb-4c31-b6e3-833200611734,e44de894-ddd3-452d-94d8-30085a15dd51,WhatsApp,out,"Hi Riya, miss you at the clinic! 20% off your next visit.",Read,winback,2026-04-17 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+159985c0-7807-4dcf-925f-d06471d5d441,8044183d-3d93-41e0-a433-067af0e99eed,WhatsApp,out,Thank you Karan! Please review us: g.page/kapoorclinic,Read,review_request,2026-04-04 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+51bbb827-b8fa-4cb7-bdf1-d86e889a458f,a952b570-63ba-4fa0-8dbf-f00dc464c234,WhatsApp,out,Diwali special — 20% off Skin Glow Pack just for you!,Read,campaign,2026-04-18 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+ef502a26-4305-4f14-bf4d-661bd8d9b8f7,58121436-ab3e-42a4-9dd7-8ed52a8a485c,WhatsApp,out,Reminder: HbA1c lab follow-up due this week.,Delivered,retention,2026-04-23 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+6a1d7729-438a-4d12-bd31-c55d668fbd6d,8f53dcae-d151-4fe4-b0a0-9232c6559ef5,WhatsApp,out,Hi! Vivaan's next pediatric visit is due.,Read,retention,2026-04-21 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+ff89dcb3-bdaa-4cd2-ae60-5436487782b5,70803522-d19a-4b75-b33e-936dc98ce55e,WhatsApp,out,Your facial appointment is confirmed for tomorrow 5 PM.,Read,appointment_confirm,2026-04-23 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+e14d5241-2ff4-4a64-be1e-6dc953384715,8f3b6bd0-f922-4476-bf11-9964a09c9176,WhatsApp,out,"Hi Pooja, free check-up offer — book now!",Sent,winback,2026-04-22 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
+58c6ab6b-0793-4d0a-8630-33fe54ddc9d5,7b7c6bd3-ac78-4bc6-a716-5cd4eb859ccf,WhatsApp,out,Hi,Sent,,2026-04-24 17:38:42.371684+00,2026-04-24 17:38:42.371684+00

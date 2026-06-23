@@ -1,0 +1,9 @@
+id,actor,action,entity,entity_id,details,created_at
+fe14a5c8-8ad1-4a2c-8c13-57c153fd48b5,Pooja Nair,Created appointment,appointment,,"{""patient"": ""Aarav Sharma""}",2026-04-24 16:54:24.316468+00
+c088d715-d698-4056-93c0-ff9585fb25aa,Arjun Singh,Generated invoice,invoice,,"{""invoice_no"": ""INV-1003""}",2026-04-24 16:54:24.316468+00
+a755040f-69ed-4976-bab3-8cdbca3e5d96,System,Triggered automation,automation,,"{""name"": ""No-show recovery""}",2026-04-24 16:54:24.316468+00
+6dd373ed-63d6-4364-ba18-d19365e03bab,Pooja Nair,Sent WhatsApp campaign,campaign,,"{""name"": ""Diwali Skin Glow Offer""}",2026-04-24 16:54:24.316468+00
+3ad1091e-5d17-4f78-9cfb-af2e0205b3f6,Suresh Yadav,Updated patient,patient,,"{""name"": ""Riya Bhat""}",2026-04-24 16:54:24.316468+00
+aaf55d17-59fa-42ba-8157-8ad7222a610f,System,Triggered automation,automation,,"{""name"": ""Review request""}",2026-04-24 16:54:24.316468+00
+0441a39d-e2cd-439a-97da-326b71c1f3a3,Arjun Singh,Created package,package,,"{""name"": ""Family Wellness""}",2026-04-24 16:54:24.316468+00
+3afa1028-39bd-43fe-a314-02f94d2d0d47,Pooja Nair,Marked completed,appointment,,"{""patient"": ""Karan Malhotra""}",2026-04-24 16:54:24.316468+00
