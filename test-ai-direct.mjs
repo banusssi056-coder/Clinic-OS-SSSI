@@ -1,5 +1,6 @@
-const SUPABASE_URL = "https://dpltwshofczdktwppxim.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRwbHR3c2hvZmN6ZGt0d3BweGltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODA5MjcsImV4cCI6MjA5NDc1NjkyN30.TzqXbmO5LePoQw7I3hhxKWVwDhKEpOCiMB8vRAk_UTc";
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || "https://dpltwshofczdktwppxim.supabase.co";
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY; // Set: $env:SUPABASE_ANON_KEY="eyJ..."
+
 
 async function testDirect() {
   console.log("Direct HTTP test to ai-insights for insights mode...\n");

@@ -1,4 +1,6 @@
-const token = "REMOVED_SECRET";
+// WARNING: Never hardcode secrets. Use environment variables instead.
+// Set SUPABASE_ACCESS_TOKEN in your shell before running this script.
+const token = process.env.SUPABASE_ACCESS_TOKEN; // e.g. run: $env:SUPABASE_ACCESS_TOKEN="sbp_..." (PowerShell)
 const ref = "dpltwshofczdktwppxim";
 const queries = [
   "ALTER TABLE wellness_logs ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW();",

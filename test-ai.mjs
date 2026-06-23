@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = "https://dpltwshofczdktwppxim.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_MjrhR84uEVAkkNIijlUxGA_FiYBgFv3";
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || "https://dpltwshofczdktwppxim.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY; // Set in .env
+
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
