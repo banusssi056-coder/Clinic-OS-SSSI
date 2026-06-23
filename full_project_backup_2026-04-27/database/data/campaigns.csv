@@ -1,6 +1,0 @@
-id,name,channel,audience_filter,template,status,sent_count,delivered,opened,booked,revenue_attributed,cost,created_at,updated_at
-0865d010-8f9d-4e38-863f-3e0d5b55237a,Diwali Skin Glow Offer,WhatsApp,tag:Skin,✨ Diwali special! 20% off on Skin Glow Pack at Kapoor Clinic. Book now!,Active,320,312,198,28,168000,1500,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-d7c70811-1d57-4319-8e9d-0cf26c37dbdb,No-Show Recovery,WhatsApp,status:NoShow,We missed you! Reschedule with 10% off — reply BOOK,Active,45,44,32,18,21600,200,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-b6b51e8f-9835-4b30-bba7-05a05ed326c5,Win-back: 90+ days,WhatsApp,last_visit>90d,"Hi {{name}}, it's been a while. Free consultation this week!",Active,86,84,51,12,14400,400,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-acc77aae-4c9b-438e-9673-8cdfb2de1795,Diabetes Care Awareness,SMS,tag:Diabetes,Free HbA1c check with consultation — book today at Kapoor Clinic,Active,140,138,67,9,13500,700,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-50a92ce3-3b64-4186-afb3-1bc8e7555ef1,Pediatric Vaccination Drive,WhatsApp,tag:Pediatric,"Vaccination camp this Saturday — limited slots, book now!",Active,62,61,48,22,26400,300,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00

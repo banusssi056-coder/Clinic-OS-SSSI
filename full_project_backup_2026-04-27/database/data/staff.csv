@@ -1,7 +1,0 @@
-id,name,role,phone,email,status,performance_score,created_at,updated_at
-bd31b8db-d016-4737-b39e-cbe1a82b4062,Pooja Nair,Receptionist,+91 99000 11122,pooja@kapoorclinic.in,Active,92,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-d962309d-720d-47f9-a566-6b01e6946a93,Suresh Yadav,Receptionist,+91 99000 22233,suresh@kapoorclinic.in,Active,78,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-f4627975-6966-4b29-9499-d817d7d3c76b,Meera Joshi,Nurse,+91 99000 33344,meera@kapoorclinic.in,Active,88,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-653e2137-e10a-4427-bdee-e194642311b8,Kavita Reddy,Nurse,+91 99000 44455,kavita@kapoorclinic.in,Active,85,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-a0d9d618-44dc-43f1-9a51-27142740875c,Arjun Singh,Admin,+91 99000 55566,arjun@kapoorclinic.in,Active,95,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
-9103472b-2e1f-4bff-8ddb-e3eaacf85320,Neha Gupta,Receptionist,+91 99000 66677,neha@kapoorclinic.in,On Leave,72,2026-04-24 16:54:24.316468+00,2026-04-24 16:54:24.316468+00
