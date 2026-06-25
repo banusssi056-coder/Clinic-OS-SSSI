@@ -54,6 +54,10 @@ Deno.serve(async (req) => {
         });
       }
 
+      const ackText = activeSystemPrompt.includes("health assistant") || activeSystemPrompt.includes("lab report")
+        ? "Understood. I'm ready to analyze the lab report and explain it in simple, patient-friendly language."
+        : "Understood. I'm ready to analyze your clinic data and provide commercial insights.";
+
       contents = [
         {
           role: "user",
@@ -61,7 +65,7 @@ Deno.serve(async (req) => {
         },
         {
           role: "model",
-          parts: [{ text: "Understood. I'm ready to analyze your clinic data and provide commercial insights." }]
+          parts: [{ text: ackText }]
         },
         ...historyMessages,
         {

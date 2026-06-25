@@ -205,7 +205,7 @@ Instructions:
                 context: { 
                     fileName: selectedFile.name,
                     fileType: fileType,
-                    fileContent: fileContent || "No extractable content",
+                    fileContent: (fileContent && fileContent.trim() !== "") ? fileContent : "Provided as file attachment",
                     patientName 
                 },
                 file: {
@@ -249,8 +249,8 @@ Instructions:
         });
         
         // Show success message with patient name if found
-        if (patientName !== "Unknown Patient") {
-            toast.success(`Report processed for patient: ${patientName}`);
+        if (parsed.patientName && parsed.patientName !== "Unknown Patient") {
+            toast.success(`Report processed for patient: ${parsed.patientName}`);
         } else {
             toast.info("Report processed. Could not automatically detect patient name.");
         }
