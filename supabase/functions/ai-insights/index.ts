@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { mode, question, context, history, systemPrompt } = await req.json();
+    const { mode, question, context, history, systemPrompt, file } = await req.json();
     const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
     if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY missing");
 
@@ -44,6 +44,16 @@ Deno.serve(async (req) => {
         }
       }
 
+      const userParts: any[] = [{ text: `${question}${ctxBlob}` }];
+      if (file && file.mimeType && file.b64Data) {
+        userParts.push({
+          inlineData: {
+            mimeType: file.mimeType,
+            data: file.b64Data
+          }
+        });
+      }
+
       contents = [
         {
           role: "user",
@@ -56,7 +66,7 @@ Deno.serve(async (req) => {
         ...historyMessages,
         {
           role: "user",
-          parts: [{ text: `${question}${ctxBlob}` }]
+          parts: userParts
         }
       ];
     }

@@ -103,6 +103,22 @@ export default function LabInterpreter() {
         // Show extracting text status
         toast.info("Extracting text from PDF...", { duration: 3000 });
         
+        // Helper to convert file to base64
+        const getBase64 = (file: File): Promise<string> => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    const result = reader.result as string;
+                    const base64 = result.split(",")[1];
+                    resolve(base64);
+                };
+                reader.onerror = error => reject(error);
+            });
+        };
+        
+        const b64Data = await getBase64(selectedFile);
+        
         // For now, extract basic info from filename and file
         // In production, this would use PDF parsing libraries and OCR
         let patientName = "Unknown Patient";
@@ -174,8 +190,8 @@ export default function LabInterpreter() {
                 question: `Analyze the lab report below for patient "${patientName}".
 
 Instructions:
-1. Extract the patient name from the report text if present; use "${patientName}" as a fallback.
-2. Extract or infer the report date.
+1. Extract the patient name from the report text or the attached file; use "${patientName}" as a fallback.
+2. Extract or infer the report date from the report text or the attached file.
 3. Identify all test markers, classify each as "abnormal" (outside reference range) or "normal".
 4. Write an "aiSummary" field in plain, friendly English that a patient with no medical training can fully understand. Avoid all jargon. Explain what the abnormal results might mean for the person's health and what they should ask their doctor.
 5. Return ONLY a JSON object in this exact shape (no extra text outside the JSON):
@@ -191,6 +207,10 @@ Instructions:
                     fileType: fileType,
                     fileContent: fileContent || "No extractable content",
                     patientName 
+                },
+                file: {
+                    mimeType: fileType,
+                    b64Data: b64Data
                 }
             }
         });
