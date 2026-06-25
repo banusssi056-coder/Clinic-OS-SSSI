@@ -3,6 +3,22 @@ import { PageHeader, SectionCard } from "@/components/ui-bits";
 import { Stethoscope, Mic, FileText, Brain, Loader2, Play, Square, Save, Activity, FilePlus2, Languages, MessageCircleHeart } from "lucide-react";
 import { toast } from "sonner";
 
+
+const PATIENT_DATA: Record<string, { summary: string; translation: (lang: string) => string }> = {
+  "John Doe (34, M)": {
+    summary: "Patient has a history of Type 2 Diabetes and mild hypertension. Last HbA1c was 6.8% (3 months ago). Compliant with Metformin 500mg BID. No known allergies.",
+    translation: (lang) => `In ${lang}: Hi John, your blood sugar levels are looking stable (HbA1c is 6.8%), and your blood pressure is slightly elevated but manageable. It's great that you are taking your Metformin twice a day as prescribed! Keep up the good work.`
+  },
+  "Sarah Smith (28, F)": {
+    summary: "Patient has a history of Hypothyroidism and Vitamin D deficiency. Last TSH was 2.4 mIU/L (2 months ago). Compliant with Levothyroxine 50mcg daily. No known allergies.",
+    translation: (lang) => `In ${lang}: Hi Sarah, your thyroid levels are looking stable (TSH is 2.4 mIU/L), but your Vitamin D levels are slightly low. It's great that you are taking your Levothyroxine every morning as prescribed! Remember to take your weekly Vitamin D supplement. Keep up the good work.`
+  },
+  "Raj Patel (45, M)": {
+    summary: "Patient has a history of Hyperlipidemia and mild Asthmatic episodes. Last Lipid Profile showed LDL at 130 mg/dL (4 months ago). Compliant with Atorvastatin 10mg daily and Albuterol inhaler PRN. No known allergies.",
+    translation: (lang) => `In ${lang}: Hi Raj, your cholesterol levels are well managed (LDL is 130 mg/dL), and your asthma has been stable. It's great that you are taking your Atorvastatin daily and keeping your inhaler handy for emergency use. Keep up the good work.`
+  }
+};
+
 export default function ClinicalWorkspace() {
   const [selectedPatient, setSelectedPatient] = useState("John Doe (34, M)");
   const [language, setLanguage] = useState("English");
@@ -34,7 +50,8 @@ export default function ClinicalWorkspace() {
     setLoadingSummary(true);
     // Mocking an API call
     setTimeout(() => {
-      setSummary("Patient has a history of Type 2 Diabetes and mild hypertension. Last HbA1c was 6.8% (3 months ago). Compliant with Metformin 500mg BID. No known allergies.");
+      const data = PATIENT_DATA[selectedPatient] || PATIENT_DATA["John Doe (34, M)"];
+      setSummary(data.summary);
       setLoadingSummary(false);
       setTranslatedSummary("");
     }, 1500);
@@ -44,7 +61,8 @@ export default function ClinicalWorkspace() {
     if (!summary) return;
     setIsTranslating(true);
     setTimeout(() => {
-      setTranslatedSummary(`In ${language}: Hi John, your blood sugar levels are looking stable (HbA1c is 6.8%), and your blood pressure is slightly elevated but manageable. It's great that you are taking your Metformin twice a day as prescribed! Keep up the good work.`);
+      const data = PATIENT_DATA[selectedPatient] || PATIENT_DATA["John Doe (34, M)"];
+      setTranslatedSummary(data.translation(language));
       setIsTranslating(false);
     }, 1200);
   };
@@ -100,7 +118,23 @@ export default function ClinicalWorkspace() {
                 <option>Marathi</option>
               </select>
             </div>
-            <select className="px-4 py-2 rounded-xl text-sm font-medium bg-card border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20">
+            <select
+              value={selectedPatient}
+              onChange={(e) => {
+                setSelectedPatient(e.target.value);
+                setSummary("");
+                setTranslatedSummary("");
+                setSoap({
+                  subjective: "",
+                  objective: "",
+                  assessment: "",
+                  plan: ""
+                });
+                setPrescription("");
+                setDiagnoses([]);
+              }}
+              className="px-4 py-2 rounded-xl text-sm font-medium bg-card border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+            >
               <option>John Doe (34, M)</option>
               <option>Sarah Smith (28, F)</option>
               <option>Raj Patel (45, M)</option>

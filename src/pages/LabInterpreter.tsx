@@ -1,5 +1,5 @@
 import { PageHeader, SectionCard, StatusPill } from "@/components/ui-bits";
-import { FlaskConical, UploadCloud, AlertTriangle, FileText, CheckCircle2 } from "lucide-react";
+import { FlaskConical, UploadCloud, AlertTriangle, FileText, CheckCircle2, Sparkles, User } from "lucide-react";
 import { useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -22,37 +22,46 @@ export default function LabInterpreter() {
   // Function to extract patient name from text content
   const extractPatientNameFromText = (text: string): string => {
     if (!text || text.trim() === "") return "Unknown Patient";
-    
-    // Common patterns for patient names in medical reports
-    const namePatterns = [
-      /Patient\s*[Nn]ame\s*:?\s*([A-Za-z\s]+)(?:\n|$)/i,
-      /Name\s*:?\s*([A-Za-z\s]+)(?:\n|$)/i,
-      /Patient\s*:?\s*([A-Za-z\s]+)(?:\n|$)/i,
-      /[Nn]ame\s*[Pp]atient\s*:?\s*([A-Za-z\s]+)(?:\n|$)/i
+
+    // Ordered from most-specific to least-specific to reduce false positives.
+    // Supports common Indian lab report layouts (e.g. Dr. Lal PathLabs, Thyrocare, SRL, etc.)
+    const namePatterns: RegExp[] = [
+      // "Patient Name : Ramesh Kumar" / "Patient's Name: ..."
+      /Patient[''s]*\s*Name\s*[:\-]?\s*([A-Za-z][A-Za-z.\s]{2,50})/i,
+      // "Name of Patient : ..."
+      /Name\s+of\s+Patient\s*[:\-]?\s*([A-Za-z][A-Za-z.\s]{2,50})/i,
+      // "Patient : Ramesh Kumar" (no word 'name')
+      /^Patient\s*[:\-]\s*([A-Za-z][A-Za-z.\s]{2,50})/im,
+      // "Ref. by / Referred by" lines often appear right after patient name label
+      // so capture before those stop words
+      /Name\s*[:\-]\s*([A-Za-z][A-Za-z.\s]{2,50}?)(?:\s*(?:Age|Sex|Gender|D\.O\.B|DOB|Date|Reg|Sample|Lab|Ref|Dr\.|Report))/i,
+      // Bare "Name :" label anywhere
+      /\bName\s*[:\-]\s*([A-Za-z][A-Za-z.\s]{2,50})/i,
+      // Salutation followed by name e.g. "Mr. Ramesh Kumar" or "Mrs. Priya"
+      /\b(?:Mr\.?|Mrs\.?|Ms\.?|Dr\.?|Shri|Smt\.?)\s+([A-Za-z][A-Za-z.\s]{2,40})/i,
     ];
-    
+
+    // Noise words that indicate the regex captured the wrong thing
+    const stopWords = /^(unknown|patient|name|lab|report|result|test|date|age|sex|gender|sample|ref|doctor|hospital|clinic|address|phone|mobile|email)$/i;
+
     for (const pattern of namePatterns) {
       const match = text.match(pattern);
       if (match && match[1]) {
-        const name = match[1].trim();
-        // Validate that it looks like a reasonable name (not too short, not just numbers)
-        if (name.length > 2 && !/^\d+$/.test(name)) {
-          return name;
+        // Clean up the captured name
+        const raw = match[1].trim().replace(/\s+/g, " ");
+        const parts = raw.split(" ").filter(p => p.length > 0);
+        // Must be at least 2 chars, not purely numeric, and first token must not be a stop word
+        if (
+          raw.length > 2 &&
+          !/^\d+$/.test(raw) &&
+          !stopWords.test(parts[0])
+        ) {
+          // Truncate to max 4 words (names rarely exceed this)
+          return parts.slice(0, 4).join(" ");
         }
       }
     }
-    
-    // Fallback: look for capitalized words that might be names
-    const words = text.split(/\s+/);
-    const capitalizedWords = words.filter(word => 
-      /^[A-Z][a-z]+$/.test(word) && word.length > 2
-    );
-    
-    if (capitalizedWords.length >= 2) {
-      // Return first two capitalized words as potential first and last name
-      return `${capitalizedWords[0]} ${capitalizedWords[1]}`;
-    }
-    
+
     return "Unknown Patient";
   };
 
@@ -161,8 +170,22 @@ export default function LabInterpreter() {
         const { data, error } = await supabase.functions.invoke("ai-insights", {
             body: {
                 mode: "chat",
-                systemPrompt: "You are a lab report analyzer. Extract structured lab test data from the provided content and return valid JSON with: patientName, date, abnormal (array with marker, value, range, status), normal (array with marker, value), aiSummary. If no file content is available, generate realistic demo data.",
-                question: `Analyze this lab report for ${patientName}. Extract or generate realistic lab values showing some abnormal results. Return only valid JSON: {patientName, date, abnormal: [{marker, value, range, status}], normal: [{marker, value}], aiSummary}`,
+                systemPrompt: `You are a friendly health assistant that explains lab reports in simple, everyday language that anyone — including someone with no medical background — can understand. Avoid medical jargon. Use plain words (e.g. say "blood sugar" instead of "glucose", "kidney function" instead of "creatinine", "infection-fighting cells" instead of "WBC"). When a value is outside the normal range, explain what it could mean in everyday terms and what the person might want to discuss with their doctor. Keep the tone warm, calm, and reassuring — never alarming. After your plain-English summary, return the full structured JSON so the UI can render the result table. Always return ONLY valid JSON — no prose outside the JSON.`,
+                question: `Analyze the lab report below for patient "${patientName}".
+
+Instructions:
+1. Extract the patient name from the report text if present; use "${patientName}" as a fallback.
+2. Extract or infer the report date.
+3. Identify all test markers, classify each as "abnormal" (outside reference range) or "normal".
+4. Write an "aiSummary" field in plain, friendly English that a patient with no medical training can fully understand. Avoid all jargon. Explain what the abnormal results might mean for the person's health and what they should ask their doctor.
+5. Return ONLY a JSON object in this exact shape (no extra text outside the JSON):
+{
+  "patientName": "...",
+  "date": "...",
+  "abnormal": [{"marker": "...", "value": "...", "range": "...", "status": "High|Low|Borderline"}],
+  "normal": [{"marker": "...", "value": "..."}],
+  "aiSummary": "Plain-English paragraph here..."
+}`,
                 context: { 
                     fileName: selectedFile.name,
                     fileType: fileType,
@@ -303,11 +326,39 @@ export default function LabInterpreter() {
         <div className="lg:col-span-2 space-y-6">
           {report ? (
             <>
-              <SectionCard title="AI Clinical Summary" icon={FlaskConical}>
-                <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-sm leading-relaxed text-indigo-950 dark:text-indigo-100">
-                  <span className="font-bold block mb-2">Patient: {report.patientName} ({report.date})</span>
-                  {report.aiSummary}
+              <SectionCard title="Health Summary — Plain English" icon={Sparkles}>
+                {/* Patient meta row */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-emerald-500/15 flex items-center justify-center shrink-0">
+                    <User className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm text-foreground">{report.patientName}</div>
+                    <div className="text-xs text-muted-foreground">Report date: {report.date}</div>
+                  </div>
+                  <span className="ml-auto text-[10px] font-semibold tracking-wide uppercase px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">
+                    ✦ Easy to Read
+                  </span>
                 </div>
+
+                {/* Plain-English summary */}
+                <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 text-sm leading-7 text-foreground space-y-3">
+                  {report.aiSummary
+                    .split(/(?<=[.!?])\s+(?=[A-Z])/) // split into sentences for readability
+                    .reduce((acc: string[], sentence: string, i: number, arr: string[]) => {
+                      // Group every 2–3 sentences into a paragraph
+                      if (i % 2 === 0) acc.push(arr.slice(i, i + 2).join(" "));
+                      return acc;
+                    }, [])
+                    .map((para: string, i: number) => (
+                      <p key={i}>{para}</p>
+                    ))
+                  }
+                </div>
+
+                <p className="mt-3 text-[11px] text-muted-foreground italic">
+                  ⚕️ This is an AI-generated plain-English explanation. Always consult your doctor for medical advice.
+                </p>
               </SectionCard>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

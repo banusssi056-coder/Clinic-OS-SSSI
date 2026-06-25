@@ -82,7 +82,7 @@ if (table === "appointments") {
       scheduled_at: new Date().toISOString(),
       type: "Checkup",
       status: "Booked",
-      patient: { 
+      patients: { 
         id: "patient-1", 
         name: "Sarah Smith", 
         phone: "1234567890",
@@ -239,7 +239,7 @@ describe("AI Features Integration Tests", () => {
           patient_id: "patient-1",
           doctor_id: "doctor-1",
           session_status: "Active",
-          patient: { id: "patient-1", full_name: "Sarah Smith", date_of_birth: "1996-01-01", phone: "1234567890" }
+          patients: { id: "patient-1", name: "Sarah Smith", full_name: "Sarah Smith", date_of_birth: "1996-01-01", phone: "1234567890" }
         },
         error: null
       });

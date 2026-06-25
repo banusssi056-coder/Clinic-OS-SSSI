@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PageHeader, SectionCard, StatusPill } from "@/components/ui-bits";
 import { Brain, Loader2, RefreshCw, Send, AlertTriangle, Target, CheckCircle, FlaskConical, Pill, Plus, Stethoscope, Mic } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { fmtDateTime12 } from "@/lib/format";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
@@ -17,6 +17,16 @@ export default function PredictiveDiagnosis() {
   const [doctorNotes, setDoctorNotes] = useState<Record<string, string>>({});
   const [recommendedTests, setRecommendedTests] = useState<Record<string, string[]>>({});
   const [recommendedMedicines, setRecommendedMedicines] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    if (selectedAppointment) {
+      setPatientData(selectedAppointment.patients);
+      setDoctorData(selectedAppointment.doctors);
+    } else {
+      setPatientData(null);
+      setDoctorData(null);
+    }
+  }, [selectedAppointment]);
 
   const fetchAppointments = async () => {
     const { data, error } = await supabase
@@ -549,7 +559,7 @@ export default function PredictiveDiagnosis() {
 
                   {diagnosisSuggestions.length === 0 && selectedAppointment && (
                     <p className="text-muted-foreground text-center py-8">
-                      No diagnosis suggestions yet. Select an appointment and click "Analyze" to get AI-powered predictions.
+                      As of now there is no records in the system to show.
                     </p>
                   )}
                 </div>
@@ -583,7 +593,7 @@ export default function PredictiveDiagnosis() {
               </ResponsiveContainer>
             ) : (
               <p className="text-muted-foreground text-center py-8">
-                No data to display. Run an analysis to see the probability distribution.
+                As of now there is no records in the system to show.
               </p>
             )}
           </SectionCard>
